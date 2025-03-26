@@ -124,7 +124,7 @@ public class JavaStreamExample {
      * 14) find the sum of all the number form the list in java 8?
      */
     public static void sumOfAllNumber(List<Integer> number) {
-        Integer sumOfAllNumber = number.stream().reduce(0, (a, b) -> a + b);
+        Integer sumOfAllNumber = number.stream().reduce(0, Integer::sum);
         System.out.println(sumOfAllNumber);
     }
 
@@ -155,8 +155,8 @@ public class JavaStreamExample {
     public static void arrFindSum(int[] arr) {
         int sum = Arrays.stream(arr).sum();
         System.out.println(sum);
-        double asDouble = Arrays.stream(arr).average().getAsDouble();
-        System.out.println(asDouble);
+        Arrays.stream(arr).average().ifPresentOrElse(System.out::println,
+                () -> System.out.println("No second largest number found"));
     }
 
     /**
